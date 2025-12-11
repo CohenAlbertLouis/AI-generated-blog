@@ -1,8 +1,10 @@
 🤖 AI-generated blog: AI-Powered Daily News Generator
+
 💡 Overview
 This project is a full-stack, containerized application designed to demonstrate automated content generation and deployment.The application features:A Backend Service that runs a scheduled cron job (once per day).The cron job uses the Hugging Face Inference API to generate a new, topical blog article daily.The generated article is persisted to a local JSON file (articles.json) acting as a simple database.A Frontend Service that displays the generated articles via an Nginx proxy.
+
 ⚙️ Tech Stack
-- Docker Compose:Orchestration of all services in a single environment.
+- Docker Compose: Orchestration of all services in a single environment.
 - Frontend: React, served by Nginx reverse proxy.
 - Backend: Node.js (Express), node-cron, axiosRuns the daily scheduling job and communicates with the AI
 - Services: LLMLlama 3.1 8B via Hugging Face API generates the daily article content.
