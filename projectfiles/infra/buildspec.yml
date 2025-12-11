@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to AWS ECR..."
+      - $(aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com)
+      # Define ECR repository URIs (CodeBuild variables)
+      - export ECR_REPO_BACKEND=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/tech-test-backend
+      - export ECR_REPO_FRONTEND=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/tech-test-frontend
+      - export IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+
+  build:
+    commands:
+      - echo "Building backend Docker image..."
+      - docker build -t $ECR_REPO_BACKEND:latest -t $ECR_REPO_BACKEND:$IMAGE_TAG ./backend
+      - echo "Building frontend Docker image..."
+      - docker build -t $ECR_REPO_FRONTEND:latest -t $ECR_REPO_FRONTEND:$IMAGE_TAG ./frontend
+
+  post_build:
+    commands:
+      - echo "Pushing Docker images to ECR..."
+      - docker push $ECR_REPO_BACKEND:latest
+      - docker push $ECR_REPO_BACKEND:$IMAGE_TAG
+      - docker push $ECR_REPO_FRONTEND:latest
+      - docker push $ECR_REPO_FRONTEND:$IMAGE_TAG
+      - echo "Push complete."
+
+artifacts:
+  files:
+    - infra/scripts/deploy.sh
+  base-directory: .

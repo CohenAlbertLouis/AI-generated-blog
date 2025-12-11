@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1765455605103",
+    "title": "Optimizing PostgreSQL Performance",
+    "content": "PostgreSQL is one of the most popular open-source relational databases, widely used across industries due to its reliability, scalability, and robust security features. However, as your application grows and the data volume increases, optimizing PostgreSQL performance becomes a critical task to maintain high performance and ensure seamless user experience. One of the key challenges in optimizing PostgreSQL performance is understanding the factors that affect its performance.\n\nSeveral factors can impact PostgreSQL performance, including indexing, query optimization, and configuration settings. Indexing is an essential technique to improve query performance, as it allows the database to quickly locate and retrieve data. However, excessive indexing can lead to increased storage requirements and slower write performance. On the other hand, poorly optimized queries can slow down the database, resulting in decreased performance. Regularly reviewing and optimizing queries is crucial to prevent performance bottlenecks. Furthermore, PostgreSQL configuration settings, such as the shared_buffers and effective_cache_size parameters, also play a significant role in determining its performance.\n\nTo optimize PostgreSQL performance, it's essential to implement a combination of these strategies. Regularly monitoring database performance using tools like pg_stat_statements, pg_stat_activity, and sysbench can help identify performance bottlenecks. By analyzing the results and making informed decisions, database administrators can optimize indexing, query performance, and configuration settings to achieve optimal performance. By following these best practices, PostgreSQL administrators can ensure their database delivers high performance, reliability, and scalability, even under heavy loads."
+  },
+  {
+    "id": "1765455304250",
+    "title": "Streamlining Your CI/CD Pipeline with AWS CodeBuild and ECR",
+    "content": "When it comes to automating your Continuous Integration/Continuous Deployment (CI/CD) pipeline, having the right tools can make all the difference. AWS CodeBuild and AWS Elastic Container Registry (ECR) are two powerful services that can help you streamline your pipeline and improve overall efficiency. In this guide, we'll take a closer look at how these services work together to simplify your build and deployment process.\n\nAWS CodeBuild is a fully managed service that automates the compilation and building of your code. It supports a wide range of languages, including Java, Python, and C++. With CodeBuild, you can create custom build environments and automate the deployment of your code to various environments, such as development, testing, and production. Meanwhile, AWS ECR provides a secure and scalable way to store, manage, and deploy container images. You can use ECR to store your Docker images and push them to various environments, ensuring a seamless deployment experience.\n\nTo get started with CodeBuild and ECR, you'll need to create a CodeBuild project and connect it to an ECR repository. Once connected, you can configure CodeBuild to automatically build and push your container images to ECR. From there, you can deploy your images to various environments using AWS services like Elastic Container Service (ECS) or Kubernetes. By using CodeBuild and ECR together, you can simplify your CI/CD pipeline, reduce errors, and improve overall efficiency. With their powerful combination, you'll be able to automate your build and deployment process with ease."
+  },
+  {
+    "id": "1765455004710",
+    "title": "Introduction to Docker Networking",
+    "content": "Docker containers are lightweight and portable, making them an attractive choice for developers who want to deploy their applications quickly and efficiently. However, when working with multiple containers, managing network communication can become a challenge. This is where Docker networking comes in – a system for creating and managing networks within the Docker ecosystem.\n\nDocker networking allows you to create a virtual network for your containers, giving them a unique IP address and enabling them to communicate with each other. This is achieved through Docker's networking drivers, which provide a way to assign IP addresses to containers and bridge the gap between the host machine and the container's network stack. There are several types of networks that can be created in Docker, including bridge networks, host networks, and overlay networks.\n\nBy understanding Docker networking fundamentals, developers can create complex network topologies and deploy scalable applications. For example, you can create a network for your application containers and a separate network for your database containers, allowing them to communicate with each other while keeping them isolated from the rest of the world. With Docker networking, the possibilities are endless, and it's up to you to explore the various use cases and configurations to find the one that best suits your needs."
+  },
+  {
+    "id": "1678886400000",
+    "title": "Welcome to the Auto-Generated Blog Platform!",
+    "content": "This is a placeholder article to ensure the system meets the initial requirement of having at least three articles. The real content will be generated daily by an AI model. This platform showcases a full-stack deployment using React, Node.js, Docker, and AWS services like EC2, ECR, and CodeBuild. The backend includes a scheduled job to call the Hugging Face Inference API and save the new content."
+  },
+  {
+    "id": "1678886400001",
+    "title": "Understanding the CI/CD Pipeline",
+    "content": "The deployment process leverages AWS CodeBuild to automatically build and push Docker images (frontend and backend) to AWS ECR whenever a new commit is made to the GitHub repository. The EC2 instance then pulls and runs these latest images. This continuous integration and deployment flow is a core part of the technical challenge."
+  },
+  {
+    "id": "1678886400002",
+    "title": "Frontend Development with React",
+    "content": "The frontend is a simple React application focused on consuming the REST API provided by the Node.js backend. It features two primary views: a list of articles (with snippets) and a full article view. The goal is clarity and functionality, not complex styling, to demonstrate mastery of the full-stack development and deployment lifecycle."
+  }
+]

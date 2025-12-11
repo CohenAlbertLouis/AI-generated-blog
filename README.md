@@ -1,2 +1,18 @@
-# AI-generated-blog
-An AI generated blog using a React frontend, Node.js (Express) backend served with Nginx and Hugging Face's API to create blog articles daily
+🤖 AI-generated blog: AI-Powered Daily News Generator💡 OverviewThis project is a full-stack, containerized application designed to demonstrate automated content generation and deployment.The application features:A Backend Service that runs a scheduled cron job (once per day).The cron job uses the Hugging Face Inference API to generate a new, topical blog article daily.The generated article is persisted to a local JSON file (articles.json) acting as a simple database.A Frontend Service that displays the generated articles via an Nginx proxy.⚙️ Tech StackComponentTechnologyRoleContainersDocker, Docker ComposeOrchestration of all services in a single environment.FrontendReact, NginxDisplays articles, served by Nginx reverse proxy.BackendNode.js (Express), node-cron, axiosRuns the daily scheduling job and communicates with the AI service.AI/LLMLlama 3.1 8B (via Hugging Face API)Generates the daily article content.DeploymentAWS ECS on EC2Production environment for hosting containers on managed EC2 instances.📁 Repository Structure.
+├── backend/                  # Node.js/Express service and article generation logic
+│   ├── jobs/generateArticle.js # The cron job logic (updated to use Llama 3.1)
+│   ├── articles.json         # Persistent article storage (mapped via volume)
+│   ├── Dockerfile            # Builds the Node.js backend image
+│   └── ...
+├── frontend/                 # React application source code
+│   ├── src/                  # React components and logic
+│   ├── Dockerfile            # Builds the multi-stage React/Nginx image
+│   └── ...
+├── docker-compose.yml        # Defines the frontend, backend services, and network
+└── README.md
+🚀 Quick Start (Local Development)PrerequisitesDocker Desktop installed (includes Docker and Docker Compose).A valid Hugging Face Access Token with granted access to the Llama 3.1 model.1. Configure the TokenEnsure your backend/jobs/generateArticle.js file is updated with your valid, approved Hugging Face token. This token allows the backend to successfully call the Inference API:JavaScript// backend/jobs/generateArticle.js
+const HF_ACCESS_TOKEN = "hf_YOUR_APPROVED_TOKEN_HERE"; 
+2. Build and Run the StackRun the following command from the project root directory. The --build flag ensures your latest code changes (including the token and cron schedule) are included in the container images.Bashdocker compose up --build -d
+3. Access the ApplicationThe frontend application is mapped to port 8080 on your host machine and will be accessible at:http://localhost:8080
+4. Verify Backend JobCheck the backend container logs to confirm the daily generation job is active:Bashdocker logs backend -f
+The job is now scheduled to run once per day (Cron expression: 0 0 * * *).☁️ Deployment to AWS EC2 via ECSThe application is deployed to AWS Elastic Container Service (ECS) utilizing the EC2 Launch Type to ensure adherence to EC2 deployment requirements.Deployment Process Summary:Capacity Provisioning: An ECS cluster (e.g., MyEC2Cluster) was created, provisioned with EC2 instances using the ECS-Optimized AMI to serve as the cluster capacity.AWS Context: The Docker CLI was configured to target the AWS environment using an ECS context, leveraging the x-aws-cloudformation extensions in the docker-compose.yml to specify the EC2 LaunchType.Deployment: The docker compose up command handled the full workflow:Image building and pushing to ECR.Creation of Task Definitions and ECS Services.Deployment of tasks onto the available EC2 instances in the cluster.
