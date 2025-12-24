@@ -1,26 +1,15 @@
-🤖 AI-generated blog: AI-Powered Daily News Generator
+# 🤖 AI-generated blog: AI-Powered Daily News Generator
 
-💡 Overview
+## 💡 Overview
 This project is a full-stack, containerized application designed to demonstrate automated content generation and deployment.The application features:A Backend Service that runs a scheduled cron job (once per day).The cron job uses the Hugging Face Inference API to generate a new, topical blog article daily.The generated article is persisted to a local JSON file (articles.json) acting as a simple database.A Frontend Service that displays the generated articles via an Nginx proxy.
 
-⚙️ Tech Stack
-- Docker Compose: Orchestration of all services in a single environment.
-- Frontend: React, served by Nginx reverse proxy.
-- Backend: Node.js (Express), node-cron, axiosRuns the daily scheduling job and communicates with the AI
-- Services: LLMLlama 3.1 8B via Hugging Face API generates the daily article content.
-📁 Repository Structure.
-├── backend/                  # Node.js/Express service and article generation logic
-│   ├── jobs/generateArticle.js # The cron job logic (updated to use Llama 3.1)
-│   ├── articles.json         # Persistent article storage (mapped via volume)
-│   ├── Dockerfile            # Builds the Node.js backend image
-│   └── ...
-├── frontend/                 # React application source code
-│   ├── src/                  # React components and logic
-│   ├── Dockerfile            # Builds the multi-stage React/Nginx image
-│   └── ...
-├── docker-compose.yml        # Defines the frontend, backend services, and network
-└── README.md
-🚀 Quick Start (Local Development)
+## ⚙️ Tech Stack
+### Docker Compose: Orchestration of all services in a single environment.
+### Frontend: React, served by Nginx reverse proxy.
+### Backend: Node.js (Express), node-cron, axios. Runs the daily scheduling job and communicates with the AI
+### Services: LLMLlama 3.1 8B via Hugging Face API generates the daily article content.
+
+## 🚀 Quick Start (Local Development)
 Prerequisites: Docker Desktop installed (includes Docker and Docker Compose).A valid Hugging Face Access Token with granted access to the Llama 3.1 model.
 1. Configure the Token. Ensure your backend/jobs/generateArticle.js file is updated with your valid, approved Hugging Face token. This token allows the backend to successfully call the Inference API:JavaScript// backend/jobs/generateArticle.js
 const HF_ACCESS_TOKEN = "hf_YOUR_APPROVED_TOKEN_HERE"; 
